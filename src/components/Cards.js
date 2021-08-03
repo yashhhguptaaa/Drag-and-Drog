@@ -18,17 +18,18 @@ export default function Cards() {
                             <h4>To Do</h4>
                         </div>
 
-                        <ul className="task-list" id="to-do" onDrop=
+                        <ul className="task-list" id="to-do" >
+                            {todolist.map((task, index) => {
+                                return <li key={index} className="task" draggable="true"
+                                onDrop=
                             {
                                 (e) => {
                                     e.preventDefault();
                                     var data = e.dataTransfer.getData("text");
-                                    setTodolist((todolist) => [...todolist,data])
+                                    setTodolist((todolist) => [...todolist.slice(0,index),data,...todolist.slice(index)])
                                 }
                             }
-                            onDragOver={(e) => { e.preventDefault(); }}>
-                            {todolist.map((task, index) => {
-                                return <li key={index} className="task" draggable="true"
+                            onDragOver={(e) => { e.preventDefault(); }}
                                     onDragStart=
                                     {
                                         (e) => {
@@ -45,21 +46,22 @@ export default function Cards() {
                     </li>
 
                     <li className="column doing-column"
-                        onDrop=
-                        {
-                            (e) => {
-                                e.preventDefault();
-                                var data = e.dataTransfer.getData("text");
-                                setDoinglist((doinglist)=>[...doinglist,data])
-                            }
-                        }
-                        onDragOver={(e) => { e.preventDefault(); }}>
+                       >
                         <div className="column-header">
                             <h4>Doing</h4>
                         </div>
                         <ul className="task-list" id="doing">
                             {doinglist.map((task, index) => {
                                 return <li key={index} className="task" draggable="true"
+                                onDrop=
+                                {
+                                    (e) => {
+                                        e.preventDefault();
+                                        var data = e.dataTransfer.getData("text");
+                                        setDoinglist((doinglist)=>[...doinglist.slice(0,index),data,...doinglist.slice(index)])
+                                    }
+                                }
+                                onDragOver={(e) => { e.preventDefault(); }}
                                     onDragStart=
                                     {
                                         (e) => {
@@ -76,21 +78,22 @@ export default function Cards() {
                     </li>
 
                     <li className="column done-column"
-                        onDrop=
-                        {
-                            (e) => {
-                                e.preventDefault();
-                                var data = e.dataTransfer.getData("text");
-                                setDonelist((donelist) => [...donelist,data]);
-                            }
-                        }
-                        onDragOver={(e) => { e.preventDefault(); }} >
+                       >
                         <div className="column-header">
                             <h4>Done</h4>
                         </div>
                         <ul className="task-list" >
                             {donelist.map((task, index) => {
                                 return <li key={index} className="task" draggable="true"
+                                onDrop=
+                                {
+                                    (e) => {
+                                        e.preventDefault();
+                                        var data = e.dataTransfer.getData("text");
+                                        setDonelist((donelist) => [...donelist.slice(0,index),data,...donelist.slice(index)]);
+                                    }
+                                }
+                                onDragOver={(e) => { e.preventDefault(); }} 
                                     onDragStart=
                                     {
                                         (e) => {
@@ -107,21 +110,22 @@ export default function Cards() {
                     </li>
 
                     <li className="column trash-column"
-                        onDrop=
-                        {
-                            (e) => {
-                                e.preventDefault();
-                                var data = e.dataTransfer.getData("text");
-                                setTrashlist((trashlist) => [...trashlist,data]);
-                            }
-                        }
-                        onDragOver={(e) => { e.preventDefault(); }}>
+                       >
                         <div className="column-header">
                             <h4>Trash</h4>
                         </div>
                         <ul className="task-list" id="trash">
                             {trashlist.map((task, index) => {
                                 return <li key={index} className="task" draggable="true"
+                                onDrop=
+                                {
+                                    (e) => {
+                                        e.preventDefault();
+                                        var data = e.dataTransfer.getData("text");
+                                        setTrashlist((trashlist) => [...trashlist.slice(0,index),data,...trashlist.slice(index)]);
+                                    }
+                                }
+                                onDragOver={(e) => { e.preventDefault(); }}
                                     onDragStart=
                                     {
                                         (e) => {
